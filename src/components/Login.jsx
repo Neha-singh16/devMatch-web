@@ -12,7 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState("Pranjal@123");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+  const [error , setError] = useState("")
 
   const handleSubmit = async () => {
     // e.preventDefault();
@@ -25,10 +25,11 @@ const Login = () => {
         },
         { withCredentials: true }
       );
-      // console.log(response);
+      console.log(response.data);
       dispatch(addUser(response.data));
       return navigate("/");
     } catch (err) {
+      setError(err?.response?.data || "Something went wrong!!");
       console.error(err);
     }
   };
@@ -88,6 +89,7 @@ const Login = () => {
                 Password
               </label>
             </div>
+            <p className="text-red-600">{error}</p>
             <button
               type="submit"
               className="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 text-white text-center text-base font-semibold rounded-lg transition duration-200 shadow"
