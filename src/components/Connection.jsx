@@ -1,5 +1,3 @@
-
-
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,18 +9,15 @@ const ConnectionList = () => {
   const rawConnections = useSelector((store) => store.connection);
   const connections = Array.isArray(rawConnections) ? rawConnections : [];
 
-  // Replace with your actual user slice or auth context
-  // const user = { firstName: "Elon", photoUrl: "https://i.pravatar.cc/40?img=5" };
   const dispatch = useDispatch();
 
   async function fetchConnections() {
     try {
-      const response = await axios.get( USER + "/user/connections" , {
+      const response = await axios.get(USER + "/user/connections", {
         withCredentials: true,
       });
       dispatch(addConnection(response?.data?.data));
-      console.log(response?.data);
-      
+      console.log(response);
     } catch (error) {
       console.error("Error fetching connections:", error);
     }
@@ -42,7 +37,8 @@ const ConnectionList = () => {
         {connections.length > 0 ? (
           <div className="flex flex-col space-y-4 max-w-xl mx-auto">
             {connections.map((conn, idx) => {
-              const { firstName, lastName, photoUrl, age, gender, about } = conn;
+              const { firstName, lastName, photoUrl, age, gender, about } =
+                conn;
               return (
                 <div
                   key={idx}
@@ -57,9 +53,11 @@ const ConnectionList = () => {
                     <h2 className="text-lg font-semibold text-red-50">
                       {firstName + " " + lastName}
                     </h2>
-                    <p className="text-sm text-gray-400">
-                      {/* {age}, {gender} */} {age && gender && `${age}, ${gender}`}
-                    </p>
+                    {age && gender && (
+                      <p className="text-sm text-gray-400">
+                        {gender + ", " + age}
+                      </p>
+                    )}
                     <p className="mt-2 text-gray-300 text-sm">{about}</p>
                   </div>
                 </div>
@@ -75,4 +73,3 @@ const ConnectionList = () => {
 };
 
 export default ConnectionList;
-
