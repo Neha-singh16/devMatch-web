@@ -121,10 +121,10 @@ const EditProfile = ({ user }) => {
                       tabIndex={0}
                       className="dropdown-content menu bg-base-100 rounded-box w-52  p-2 shadow"
                     >
-                      <li onClick={() => setGender("Male")}>
+                      <li onClick={() => setGender("male")}>
                         <a>Male</a>
                       </li>
-                      <li onClick={() => setGender("Female")}>
+                      <li onClick={() => setGender("female")}>
                         <a>Female</a>
                       </li>
                       <li onClick={() => setGender("Other")}>

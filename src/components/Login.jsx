@@ -8,8 +8,8 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 const Login = () => {
-  const [email, setEmailId] = useState("priaa66@gmail.com");
-  const [password, setPassword] = useState("Priya@123");
+  const [email, setEmailId] = useState("hardik@gmail.com");
+  const [password, setPassword] = useState("Hardik@123");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [error , setError] = useState("")
